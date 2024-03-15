@@ -38,7 +38,9 @@ jobs:
           docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/tiktak:$COMMIT_HASH
 
       - name: Restart Azure Container Instance
-        uses: azure/azure-cli
-        with:
-          inlineScript: |
-            az container restart --name tiktaktoe --resource-group Temp
+        run: |
+          az container restart --name tiktaktoe --resource-group Temp
+        env:
+          AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+          AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+          AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
