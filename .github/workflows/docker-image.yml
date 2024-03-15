@@ -37,8 +37,3 @@ jobs:
           COMMIT_HASH=$(git rev-parse --short HEAD)
           docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/tiktak:$COMMIT_HASH
 
-      - name: Restart Azure Container Instance
-        uses: azure/azure-cli@v1
-        with:
-          inlineScript: |
-            az container restart --name tiktaktoe --resource-group Temp
