@@ -1,3 +1,3 @@
 FROM httpd:latest
 
-COPY . /usr/local/apache2/htdocs/
+COPY ./site/ /usr/local/apache2/htdocs/
