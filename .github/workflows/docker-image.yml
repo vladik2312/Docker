@@ -38,9 +38,10 @@ jobs:
           docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/tiktak:latest
           docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/tiktak:$COMMIT_HASH
 
-      - name: Login to Azure Container Registry
-        uses: azure/docker-login@v1
-        with:
-          login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
-          username: ${{ secrets.REGISTRY_USERNAME }}
-          password: ${{ secrets.REGISTRY_PASSWORD }}
+      - name: Update Azure Container Instance
+        run: |
+          az container update --name tiktaktoe --resource-group Temp --image tiktak.azurecr.io/tiktak:latest
+        env:
+          AZURE_CLI_CONFIG_DIR: ${{ github.workspace }}/.azure
+        working-directory: ${{ github.workspace }}
+
