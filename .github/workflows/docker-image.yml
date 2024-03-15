@@ -40,8 +40,8 @@ jobs:
 
       - name: Update Azure Container Instance
         run: |
-          az container create --name ***toe --resource-group Temp --image ***/tiktak:latest
-
+          az login --service-principal -u ${{ secrets.AZURE_SP_APP_ID }} -p ${{ secrets.AZURE_SP_PASSWORD }} --tenant ${{ secrets.AZURE_SP_TENANT }}
+          az container create --name tiktaktoe --resource-group Temp --image tiktak.azurecr.io/tiktak:latest
         env:
           AZURE_CLI_CONFIG_DIR: ${{ github.workspace }}/.azure
         working-directory: ${{ github.workspace }}
