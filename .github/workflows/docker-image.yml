@@ -38,10 +38,3 @@ jobs:
           docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/tiktak:latest
           docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/tiktak:$COMMIT_HASH
 
-      - name: Update Azure Container Instance
-        run: |
-          az login --service-principal -u ${{ secrets.AZURE_SP_APP_ID }} -p ${{ secrets.AZURE_SP_PASSWORD }} --tenant ${{ secrets.AZURE_SP_TENANT }}
-          az container create --name tiktaktoe --resource-group Temp --image tiktak.azurecr.io/tiktak:latest
-        env:
-          AZURE_CLI_CONFIG_DIR: ${{ github.workspace }}/.azure
-        working-directory: ${{ github.workspace }}
