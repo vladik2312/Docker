@@ -38,10 +38,8 @@ jobs:
           docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/tiktak:latest
           docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/tiktak:$COMMIT_HASH
 
-      - name: Update Azure Container Instance
-        run: |
-          az container restart --name tiktaktoe --resource-group Temp --image tiktak.azurecr.io/tiktak:latest
-        env:
-          AZURE_CLI_CONFIG_DIR: ${{ github.workspace }}/.azure
-        working-directory: ${{ github.workspace }}
-
+      - name: Restart Azure Container Instance
+        uses: azure/azure-cli@v1
+        with:
+          inlineScript: |
+            az container restart --name <container-instance-name> --resource-group <resource-group-name>
