@@ -40,7 +40,7 @@ jobs:
 
       - name: Update Azure Container Instance
         run: |
-          az container update --name tiktaktoe --resource-group Temp --image tiktak.azurecr.io/tiktak:latest
+          az container create --name tiktaktoe --resource-group Temp --image tiktak.azurecr.io/tiktak:latest --restart-policy OnImageUpdate
         env:
           AZURE_CLI_CONFIG_DIR: ${{ github.workspace }}/.azure
         working-directory: ${{ github.workspace }}
