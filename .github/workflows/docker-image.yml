@@ -19,9 +19,9 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build . --file Dockerfile --tag my-image-name:latest
+          docker build . --file Dockerfile --tag tiktak:latest
           COMMIT_HASH=$(git rev-parse --short HEAD)
-          docker tag my-image-name:latest my-image-name:$COMMIT_HASH
+          docker tag tiktak:latest tiktak:$COMMIT_HASH
 
       - name: Login to Azure Container Registry
         uses: azure/docker-login@v1
@@ -32,8 +32,8 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build . --file Dockerfile --tag ${{ secrets.REGISTRY_LOGIN_SERVER }}/my-image-name:latest
+          docker build . --file Dockerfile --tag ${{ secrets.REGISTRY_LOGIN_SERVER }}/tiktak:latest
           COMMIT_HASH=$(git rev-parse --short HEAD)
-          docker tag ${{ secrets.REGISTRY_LOGIN_SERVER }}/my-image-name:latest ${{ secrets.REGISTRY_LOGIN_SERVER }}/my-image-name:$COMMIT_HASH
-          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/my-image-name:latest
-          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/my-image-name:$COMMIT_HASH
+          docker tag ${{ secrets.REGISTRY_LOGIN_SERVER }}/tiktak:latest ${{ secrets.REGISTRY_LOGIN_SERVER }}/tiktak:$COMMIT_HASH
+          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/tiktak:latest
+          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/tiktak:$COMMIT_HASH
