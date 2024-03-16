@@ -41,7 +41,7 @@ jobs:
 
 
       - name: Login in Azure
-        run: az login -u vtereshchenko-its24@lll.kpi.ua -p ${{ secrets.AZURE_SP_PASSWORD }} -t ${{ secrets.SUBSCRIPTION_ID }}
+        run: az login -u vtereshchenko-its24@lll.kpi.ua -p ${{ secrets.AZURE_SP_PASSWORD }} -t vtereshchenkoits24lllkpi.onmicrosoft.com
       - name: Restart Azure Container Instance
         run: az container restart --resource-group Temp --name tiktaktoe --subscription ${{ secrets.SUBSCRIPTION_ID }}
 
