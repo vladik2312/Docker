@@ -6,7 +6,8 @@ stages:
       vmImage: 'Ubuntu-16.04'
     continueOnError: true
     steps:
-    - script: echo "hello to my first Build"
+    - script: echo "This is a placeholder Build job."
+
 - stage: dev_deploy
   jobs:
   - deployment: dev_deploy
@@ -17,7 +18,8 @@ stages:
       runOnce:
         deploy:
           steps:
-          - script: echo "hello, dev world !!!"
+          - script: echo "This is a placeholder deployment for the dev environment."
+
 - stage: qa_deploy
   jobs:
   - deployment: qa_deploy
@@ -28,4 +30,4 @@ stages:
       runOnce:
         deploy:
           steps:
-          - script: echo "hello, qa world !!!"
+          - script: echo "This is a placeholder deployment for the QA environment."
