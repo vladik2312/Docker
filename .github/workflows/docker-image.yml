@@ -41,4 +41,5 @@ jobs:
 
 
       - name: Restart Azure Container Instance
-        run: az container restart --resource-group Temp --name tiktaktoe --subscription ${{ secrets.SUBSCRIPTION_ID }} --username ${{ secrets.USER_NAME }} --password ${{ secrets.REGISTRY_PASSWORD }}
+        run: az container restart --resource-group Temp --name tiktaktoe --subscription ${{ secrets.SUBSCRIPTION_ID }} --username Test@vtereshchenkoits24lllkpi.onmicrosoft.com --password Pomo601506
+
