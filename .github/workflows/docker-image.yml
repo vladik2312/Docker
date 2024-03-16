@@ -39,3 +39,6 @@ jobs:
           docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/tiktak:latest
           docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/tiktak:$COMMIT_HASH
 
+
+          - name: Restart Azure Container Instance
+            run: az container restart --resource-group Temp --name tiktaktoe --subscription ${{ secrets.SUBSCRIPTION_ID }} --username ${{ secrets.USER_NAME }} --password ${{ secrets.REGISTRY_PASSWORD }}
