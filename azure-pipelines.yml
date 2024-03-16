@@ -1,39 +1,31 @@
-# Docker
-# Build and push an image to Azure Container Registry
-# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
-
-trigger:
-- main
-
-resources:
-- repo: self
-
-variables:
-  # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: 'edc40017-d312-4a31-aa39-54da1edfa1e8'
-  imageRepository: 'vladikdocker'
-  containerRegistry: 'tiktak.azurecr.io'
-  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
-  tag: '$(Build.BuildId)'
-
-  # Agent VM image name
-  vmImageName: 'ubuntu-latest'
-
 stages:
 - stage: Build
-  displayName: Build and push stage
   jobs:
   - job: Build
-    displayName: Build
     pool:
-      vmImage: $(vmImageName)
+      vmImage: 'Ubuntu-16.04'
+    continueOnError: true
     steps:
-    - task: Docker@2
-      displayName: Build and push an image to container registry
-      inputs:
-        command: buildAndPush
-        repository: $(imageRepository)
-        dockerfile: $(dockerfilePath)
-        containerRegistry: $(dockerRegistryServiceConnection)
-        tags: |
-          $(tag)
+    - script: echo "hello to my first Build"
+- stage: dev_deploy
+  jobs:
+  - deployment: dev_deploy
+    pool:
+      vmImage: 'Ubuntu-16.04'
+    environment: 'dev-hello'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo "hello, dev world !!!"
+- stage: qa_deploy
+  jobs:
+  - deployment: qa_deploy
+    pool:
+      vmImage: 'Ubuntu-16.04'
+    environment: 'qa-hello'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo "hello, qa world !!!"
