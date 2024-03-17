@@ -1,8 +1,6 @@
 trigger:
   - main  # Запускати пайплайн при кожному коміті у гілці main
 
-pool:
-  vmImage: 'ubuntu-latest'  # Використовувати образ Ubuntu для виконання пайплайну
 
 jobs:
   - job: Build_and_Test
