@@ -11,12 +11,3 @@ jobs:
 
       - script: echo 'Running tests...'
         displayName: 'Test'
-
-      # Інші кроки для розгортання або доставки програмного забезпечення
-
-  - job: Deploy
-    displayName: 'Deploy to Production'
-    dependsOn: Build_and_Test
-    steps:
-      - script: echo 'Deploying to production environment...'
-        displayName: 'Deployment'
