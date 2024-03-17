@@ -5,9 +5,3 @@ trigger:
 jobs:
   - job: Build_and_Test
     displayName: 'Build and Test'
-    steps:
-      - script: echo 'Building the project...'
-        displayName: 'Build'
-
-      - script: echo 'Running tests...'
-        displayName: 'Test'
