@@ -1,8 +1,24 @@
-stages:
-- stage: Build
-  jobs:
-  - job: Build
+trigger:
+  - main  # Запускати пайплайн при кожному коміті у гілці main
 
-    continueOnError: true
+pool:
+  vmImage: 'ubuntu-latest'  # Використовувати образ Ubuntu для виконання пайплайну
+
+jobs:
+  - job: Build_and_Test
+    displayName: 'Build and Test'
     steps:
-    - script: echo "This is a placeholder Build job."
+      - script: echo 'Building the project...'
+        displayName: 'Build'
+
+      - script: echo 'Running tests...'
+        displayName: 'Test'
+
+      # Інші кроки для розгортання або доставки програмного забезпечення
+
+  - job: Deploy
+    displayName: 'Deploy to Production'
+    dependsOn: Build_and_Test
+    steps:
+      - script: echo 'Deploying to production environment...'
+        displayName: 'Deployment'
