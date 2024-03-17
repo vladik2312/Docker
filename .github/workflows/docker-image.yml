@@ -32,3 +32,11 @@ jobs:
           docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/tiktak:latest
           docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/tiktak:$COMMIT_HASH
 
+      - name: Setup Azure CLI
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Restart Azure Container Instance
+        run: |  
+          az container restart --name tiktaktoe --resource-group Temp
