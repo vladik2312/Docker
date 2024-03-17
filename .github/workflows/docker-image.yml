@@ -38,5 +38,5 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Restart Azure Container Instance
-        run: |
-          az container update --resource-group Temp --name tiktaktoe --image tiktak.azurecr.io/tiktak:latest
+        run: |  
+          az container restart --name tiktaktoe --resource-group Temp
